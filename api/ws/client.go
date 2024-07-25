@@ -8,8 +8,8 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"fmt"
-	"github.com/drinkthere/okx"
-	"github.com/drinkthere/okx/events"
+	"github.com/LIJI-MAX/okx"
+	"github.com/LIJI-MAX/okx/events"
 	"github.com/gorilla/websocket"
 	"net"
 	"net/http"
@@ -311,7 +311,7 @@ func (c *ClientWs) dial(p bool) error {
 			HandshakeTimeout:  45 * time.Second,
 			EnableCompression: false,
 			TLSClientConfig: &tls.Config{
-				CipherSuites: []uint16{
+				CipherSuites: []uint16{ // 由于okx的demo服务器不支持默认TLS，设置TLS证书版本
 					tls.TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,
 					tls.TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,
 				},

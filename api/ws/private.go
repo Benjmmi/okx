@@ -2,10 +2,10 @@ package ws
 
 import (
 	"encoding/json"
-	"github.com/drinkthere/okx"
-	"github.com/drinkthere/okx/events"
-	"github.com/drinkthere/okx/events/private"
-	requests "github.com/drinkthere/okx/requests/ws/private"
+	"github.com/LIJI-MAX/okx"
+	"github.com/LIJI-MAX/okx/events"
+	"github.com/LIJI-MAX/okx/events/private"
+	requests "github.com/LIJI-MAX/okx/requests/ws/private"
 )
 
 // Private

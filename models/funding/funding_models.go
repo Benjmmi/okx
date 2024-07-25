@@ -1,6 +1,6 @@
 package funding
 
-import "github.com/drinkthere/okx"
+import "github.com/LIJI-MAX/okx"
 
 type (
 	Currency struct {

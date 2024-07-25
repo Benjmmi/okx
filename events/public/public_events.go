@@ -1,9 +1,9 @@
 package public
 
 import (
-	"github.com/drinkthere/okx/events"
-	"github.com/drinkthere/okx/models/market"
-	"github.com/drinkthere/okx/models/publicdata"
+	"github.com/LIJI-MAX/okx/events"
+	"github.com/LIJI-MAX/okx/models/market"
+	"github.com/LIJI-MAX/okx/models/publicdata"
 )
 
 type (

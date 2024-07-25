@@ -1,9 +1,9 @@
 package private
 
 import (
-	"github.com/drinkthere/okx/events"
-	"github.com/drinkthere/okx/models/account"
-	"github.com/drinkthere/okx/models/trade"
+	"github.com/LIJI-MAX/okx/events"
+	"github.com/LIJI-MAX/okx/models/account"
+	"github.com/LIJI-MAX/okx/models/trade"
 )
 
 type (

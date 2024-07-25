@@ -3,10 +3,10 @@ package ws
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/drinkthere/okx"
-	"github.com/drinkthere/okx/events"
-	"github.com/drinkthere/okx/events/public"
-	requests "github.com/drinkthere/okx/requests/ws/public"
+	"github.com/LIJI-MAX/okx"
+	"github.com/LIJI-MAX/okx/events"
+	"github.com/LIJI-MAX/okx/events/public"
+	requests "github.com/LIJI-MAX/okx/requests/ws/public"
 	"strings"
 )
 

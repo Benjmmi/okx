@@ -1,6 +1,6 @@
 package account
 
-import "github.com/drinkthere/okx"
+import "github.com/LIJI-MAX/okx"
 
 type (
 	Balance struct {

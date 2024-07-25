@@ -1,6 +1,6 @@
 package subaccount
 
-import "github.com/drinkthere/okx"
+import "github.com/LIJI-MAX/okx"
 
 type (
 	SubAccount struct {

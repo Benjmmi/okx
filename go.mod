@@ -1,4 +1,4 @@
-module github.com/drinkthere/okx
+module github.com/LIJI-MAX/okx
 
 go 1.17
 

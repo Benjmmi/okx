@@ -1,6 +1,6 @@
 package market
 
-import "github.com/drinkthere/okx"
+import "github.com/LIJI-MAX/okx"
 
 type (
 	GetTickers struct {

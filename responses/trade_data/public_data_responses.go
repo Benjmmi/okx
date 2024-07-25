@@ -1,8 +1,8 @@
 package trade_data
 
 import (
-	"github.com/drinkthere/okx/models/tradedata"
-	"github.com/drinkthere/okx/responses"
+	"github.com/LIJI-MAX/okx/models/tradedata"
+	"github.com/LIJI-MAX/okx/responses"
 )
 
 type (

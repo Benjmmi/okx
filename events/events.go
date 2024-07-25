@@ -2,7 +2,7 @@ package events
 
 import (
 	"encoding/json"
-	"github.com/drinkthere/okx"
+	"github.com/LIJI-MAX/okx"
 )
 
 type (

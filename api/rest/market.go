@@ -2,9 +2,9 @@ package rest
 
 import (
 	"encoding/json"
-	"github.com/drinkthere/okx"
-	requests "github.com/drinkthere/okx/requests/rest/market"
-	responses "github.com/drinkthere/okx/responses/market"
+	"github.com/LIJI-MAX/okx"
+	requests "github.com/LIJI-MAX/okx/requests/rest/market"
+	responses "github.com/LIJI-MAX/okx/responses/market"
 	"net/http"
 )
 

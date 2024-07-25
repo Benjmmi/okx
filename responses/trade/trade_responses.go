@@ -1,8 +1,8 @@
 package trade
 
 import (
-	"github.com/drinkthere/okx/models/trade"
-	"github.com/drinkthere/okx/responses"
+	"github.com/LIJI-MAX/okx/models/trade"
+	"github.com/LIJI-MAX/okx/responses"
 )
 
 type (
