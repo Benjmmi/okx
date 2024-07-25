@@ -4,6 +4,7 @@ import (
 	"context"
 	"crypto/hmac"
 	"crypto/sha256"
+	"crypto/tls"
 	"encoding/base64"
 	"encoding/json"
 	"fmt"
@@ -309,6 +310,12 @@ func (c *ClientWs) dial(p bool) error {
 			},
 			HandshakeTimeout:  45 * time.Second,
 			EnableCompression: false,
+			TLSClientConfig: &tls.Config{
+				CipherSuites: []uint16{
+					tls.TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,
+					tls.TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,
+				},
+			},
 		}
 	} else {
 		dialer = websocket.Dialer{
