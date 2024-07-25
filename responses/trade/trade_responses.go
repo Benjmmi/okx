@@ -1,8 +1,8 @@
 package trade
 
 import (
-	"github.com/LIJI-MAX/okx/models/trade"
-	"github.com/LIJI-MAX/okx/responses"
+	"github.com/LIJI-Max/okx/models/trade"
+	"github.com/LIJI-Max/okx/responses"
 )
 
 type (

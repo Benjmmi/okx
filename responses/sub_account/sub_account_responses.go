@@ -1,9 +1,9 @@
 package sub_account
 
 import (
-	"github.com/LIJI-MAX/okx/models/account"
-	models "github.com/LIJI-MAX/okx/models/subaccount"
-	"github.com/LIJI-MAX/okx/responses"
+	"github.com/LIJI-Max/okx/models/account"
+	models "github.com/LIJI-Max/okx/models/subaccount"
+	"github.com/LIJI-Max/okx/responses"
 )
 
 type (

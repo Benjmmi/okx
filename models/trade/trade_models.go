@@ -1,6 +1,6 @@
 package trade
 
-import "github.com/LIJI-MAX/okx"
+import "github.com/LIJI-Max/okx"
 
 type (
 	PlaceOrder struct {

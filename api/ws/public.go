@@ -3,10 +3,10 @@ package ws
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/LIJI-MAX/okx"
-	"github.com/LIJI-MAX/okx/events"
-	"github.com/LIJI-MAX/okx/events/public"
-	requests "github.com/LIJI-MAX/okx/requests/ws/public"
+	"github.com/LIJI-Max/okx"
+	"github.com/LIJI-Max/okx/events"
+	"github.com/LIJI-Max/okx/events/public"
+	requests "github.com/LIJI-Max/okx/requests/ws/public"
 	"strings"
 )
 

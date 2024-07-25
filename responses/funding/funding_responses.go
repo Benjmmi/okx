@@ -1,8 +1,8 @@
 package funding
 
 import (
-	models "github.com/LIJI-MAX/okx/models/funding"
-	"github.com/LIJI-MAX/okx/responses"
+	models "github.com/LIJI-Max/okx/models/funding"
+	"github.com/LIJI-Max/okx/responses"
 )
 
 type (

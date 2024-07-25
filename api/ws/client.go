@@ -8,8 +8,8 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"fmt"
-	"github.com/LIJI-MAX/okx"
-	"github.com/LIJI-MAX/okx/events"
+	"github.com/LIJI-Max/okx"
+	"github.com/LIJI-Max/okx/events"
 	"github.com/gorilla/websocket"
 	"net"
 	"net/http"
@@ -322,6 +322,12 @@ func (c *ClientWs) dial(p bool) error {
 			Proxy:             http.ProxyFromEnvironment,
 			HandshakeTimeout:  45 * time.Second,
 			EnableCompression: false,
+			TLSClientConfig: &tls.Config{
+				CipherSuites: []uint16{ // 由于okx的demo服务器不支持默认TLS，设置TLS证书版本
+					tls.TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,
+					tls.TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,
+				},
+			},
 		}
 	}
 	conn, res, err := dialer.Dial(string(c.url[p]), nil)

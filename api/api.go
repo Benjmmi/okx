@@ -2,9 +2,9 @@ package api
 
 import (
 	"context"
-	"github.com/LIJI-MAX/okx"
-	"github.com/LIJI-MAX/okx/api/rest"
-	"github.com/LIJI-MAX/okx/api/ws"
+	"github.com/LIJI-Max/okx"
+	"github.com/LIJI-Max/okx/api/rest"
+	"github.com/LIJI-Max/okx/api/ws"
 )
 
 // Client is the main api wrapper of okx

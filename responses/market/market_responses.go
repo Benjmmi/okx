@@ -1,8 +1,8 @@
 package market
 
 import (
-	"github.com/LIJI-MAX/okx/models/market"
-	"github.com/LIJI-MAX/okx/responses"
+	"github.com/LIJI-Max/okx/models/market"
+	"github.com/LIJI-Max/okx/responses"
 )
 
 type (

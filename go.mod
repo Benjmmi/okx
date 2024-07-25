@@ -1,4 +1,4 @@
-module github.com/LIJI-MAX/okx
+module github.com/LIJI-Max/okx
 
 go 1.17
 

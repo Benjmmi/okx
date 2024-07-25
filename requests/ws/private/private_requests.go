@@ -1,6 +1,6 @@
 package private
 
-import "github.com/LIJI-MAX/okx"
+import "github.com/LIJI-Max/okx"
 
 type (
 	OrderBook struct {

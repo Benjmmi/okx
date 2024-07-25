@@ -1,8 +1,8 @@
 package account
 
 import (
-	models "github.com/LIJI-MAX/okx/models/account"
-	"github.com/LIJI-MAX/okx/responses"
+	models "github.com/LIJI-Max/okx/models/account"
+	"github.com/LIJI-Max/okx/responses"
 )
 
 type (

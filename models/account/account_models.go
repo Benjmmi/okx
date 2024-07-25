@@ -1,6 +1,6 @@
 package account
 
-import "github.com/LIJI-MAX/okx"
+import "github.com/LIJI-Max/okx"
 
 type (
 	Balance struct {

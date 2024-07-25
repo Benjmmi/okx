@@ -1,6 +1,6 @@
 package funding
 
-import "github.com/LIJI-MAX/okx"
+import "github.com/LIJI-Max/okx"
 
 type (
 	GetBalance struct {

@@ -3,7 +3,7 @@ package tradedata
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/LIJI-MAX/okx"
+	"github.com/LIJI-Max/okx"
 	"strconv"
 	"time"
 )
