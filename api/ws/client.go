@@ -4,7 +4,6 @@ import (
 	"context"
 	"crypto/hmac"
 	"crypto/sha256"
-	"crypto/tls"
 	"encoding/base64"
 	"encoding/json"
 	"fmt"
@@ -118,7 +117,7 @@ func (c *ClientWs) Connect(p bool) error {
 	if err == nil {
 		return nil
 	}
-
+	fmt.Errorf("Websocket connect dialer error: %w", err)
 	ticker := time.NewTicker(redialTick)
 	defer ticker.Stop()
 
@@ -310,24 +309,24 @@ func (c *ClientWs) dial(p bool) error {
 			},
 			HandshakeTimeout:  45 * time.Second,
 			EnableCompression: false,
-			TLSClientConfig: &tls.Config{
-				CipherSuites: []uint16{ // 由于okx的demo服务器不支持默认TLS，设置TLS证书版本
-					tls.TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,
-					tls.TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,
-				},
-			},
+			//TLSClientConfig: &tls.Config{
+			//	CipherSuites: []uint16{ // 由于okx的demo服务器不支持默认TLS，设置TLS证书版本
+			//		tls.TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,
+			//		tls.TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,
+			//	},
+			//},
 		}
 	} else {
 		dialer = websocket.Dialer{
 			Proxy:             http.ProxyFromEnvironment,
 			HandshakeTimeout:  45 * time.Second,
 			EnableCompression: false,
-			TLSClientConfig: &tls.Config{
-				CipherSuites: []uint16{ // 由于okx的demo服务器不支持默认TLS，设置TLS证书版本
-					tls.TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,
-					tls.TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,
-				},
-			},
+			//TLSClientConfig: &tls.Config{
+			//	CipherSuites: []uint16{ // 由于okx的demo服务器不支持默认TLS，设置TLS证书版本
+			//		tls.TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,
+			//		tls.TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,
+			//	},
+			//},
 		}
 	}
 	conn, res, err := dialer.Dial(string(c.url[p]), nil)
