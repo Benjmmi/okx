@@ -4,6 +4,7 @@ import (
 	"context"
 	"crypto/hmac"
 	"crypto/sha256"
+	"crypto/tls"
 	"encoding/base64"
 	"encoding/json"
 	"fmt"
@@ -297,36 +298,46 @@ func (c *ClientWs) dial(p bool) error {
 	var dialer websocket.Dialer
 	if c.WithIP != "" {
 		dialer = websocket.Dialer{
-			NetDial: func(network, addr string) (net.Conn, error) {
-				localAddr, err := net.ResolveTCPAddr("tcp", c.WithIP+":0") // 替换为您的出口IP地址
+			//NetDial: func(network, addr string) (net.Conn, error) {
+			//	localAddr, err := net.ResolveTCPAddr("tcp", c.WithIP+":0") // 替换为您的出口IP地址
+			//	if err != nil {
+			//		return nil, err
+			//	}
+			//	d := net.Dialer{
+			//		LocalAddr: localAddr,
+			//	}
+			//	return d.Dial(network, addr)
+			//},
+			NetDialContext: func(ctx context.Context, network, addr string) (net.Conn, error) {
+				localAddr, err := net.ResolveTCPAddr("tcp", c.WithIP+":0") // Replace with your outbound IP
 				if err != nil {
-					return nil, err
+					return nil, fmt.Errorf("failed to resolve local address: %w", err)
 				}
 				d := net.Dialer{
 					LocalAddr: localAddr,
 				}
-				return d.Dial(network, addr)
+				return d.DialContext(ctx, network, addr)
 			},
 			HandshakeTimeout:  45 * time.Second,
 			EnableCompression: false,
-			//TLSClientConfig: &tls.Config{
-			//	CipherSuites: []uint16{ // 由于okx的demo服务器不支持默认TLS，设置TLS证书版本
-			//		tls.TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,
-			//		tls.TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,
-			//	},
-			//},
+			TLSClientConfig: &tls.Config{
+				CipherSuites: []uint16{ // 由于okx的demo服务器不支持默认TLS，设置TLS证书版本
+					tls.TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,
+					tls.TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,
+				},
+			},
 		}
 	} else {
 		dialer = websocket.Dialer{
 			Proxy:             http.ProxyFromEnvironment,
 			HandshakeTimeout:  45 * time.Second,
 			EnableCompression: false,
-			//TLSClientConfig: &tls.Config{
-			//	CipherSuites: []uint16{ // 由于okx的demo服务器不支持默认TLS，设置TLS证书版本
-			//		tls.TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,
-			//		tls.TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,
-			//	},
-			//},
+			TLSClientConfig: &tls.Config{
+				CipherSuites: []uint16{ // 由于okx的demo服务器不支持默认TLS，设置TLS证书版本
+					tls.TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,
+					tls.TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,
+				},
+			},
 		}
 	}
 	conn, res, err := dialer.Dial(string(c.url[p]), nil)
