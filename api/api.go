@@ -5,8 +5,6 @@ import (
 	"github.com/LIJI-Max/okx"
 	"github.com/LIJI-Max/okx/api/rest"
 	"github.com/LIJI-Max/okx/api/ws"
-	"net/url"
-	"strings"
 )
 
 // Client is the main api wrapper of okx
@@ -111,14 +109,9 @@ func NewClientWithSourceAndTargetIP(ctx context.Context, apiKey, secretKey, pass
 		wsPubURL = okx.BusinessWsURL
 		wsPriURL = okx.BusinessWsURL
 	}
-	parsedWsURL, err := url.Parse(string(wsPriURL))
-	if err != nil {
-		return nil, err
-	}
-	hostname := parsedWsURL.Hostname()
-	wsPriURLStr := strings.Replace(string(wsPriURL), hostname, targetIp, 1)
+
 	r := rest.NewClientWithIP(apiKey, secretKey, passphrase, restURL, destination, sourceIp)
-	c := ws.NewClientWithIP(ctx, apiKey, secretKey, passphrase, map[bool]okx.BaseURL{true: okx.BaseURL(wsPriURLStr), false: wsPubURL}, sourceIp)
+	c := ws.NewClientWithSourceAndTargetIP(ctx, apiKey, secretKey, passphrase, map[bool]okx.BaseURL{true: wsPriURL, false: wsPubURL}, sourceIp, targetIp)
 
 	return &Client{r, c, ctx}, nil
 }

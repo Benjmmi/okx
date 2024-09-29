@@ -3,3 +3,4 @@
 cmd/
 vendor/
 examples/ticker.go
+config/*

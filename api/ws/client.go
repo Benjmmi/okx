@@ -13,6 +13,7 @@ import (
 	"github.com/gorilla/websocket"
 	"net"
 	"net/http"
+	"net/url"
 	"strings"
 	"sync"
 	"time"
@@ -45,6 +46,7 @@ type ClientWs struct {
 	Public        *Public
 	Trade         *Trade
 	WithIP        string
+	TargetIP      string
 }
 
 const (
@@ -95,6 +97,33 @@ func NewClientWithIP(ctx context.Context, apiKey, secretKey, passphrase string, 
 		sendChan:   map[bool]chan []byte{true: make(chan []byte, 3), false: make(chan []byte, 3)},
 		DoneChan:   make(chan interface{}, 32),
 		WithIP:     ip,
+	}
+
+	c.Private = NewPrivate(c)
+	c.Public = NewPublic(c)
+	c.Trade = NewTrade(c)
+	now := time.Now()
+	c.lastTransmit.Store(true, &now)
+	c.lastTransmit.Store(false, &now)
+	return c
+}
+
+func NewClientWithSourceAndTargetIP(ctx context.Context, apiKey, secretKey, passphrase string, url map[bool]okx.BaseURL, sourceIp, targetIp string) *ClientWs {
+	ctx, cancel := context.WithCancel(ctx)
+	c := &ClientWs{
+		url:        url,
+		apiKey:     apiKey,
+		secretKey:  []byte(secretKey),
+		passphrase: passphrase,
+		conn:       make(map[bool]*websocket.Conn),
+		closed:     make(map[bool]bool),
+		mu:         map[bool]*sync.RWMutex{true: {}, false: {}},
+		ctx:        ctx,
+		Cancel:     cancel,
+		sendChan:   map[bool]chan []byte{true: make(chan []byte, 3), false: make(chan []byte, 3)},
+		DoneChan:   make(chan interface{}, 32),
+		WithIP:     sourceIp,
+		TargetIP:   targetIp,
 	}
 
 	c.Private = NewPrivate(c)
@@ -296,51 +325,67 @@ func (c *ClientWs) WaitForAuthorization() error {
 func (c *ClientWs) dial(p bool) error {
 	c.mu[p].Lock()
 	var dialer websocket.Dialer
+
+	tlsConfig := &tls.Config{
+		// Set SNI to the original domain (required for HTTPS handshake)
+		//ServerName: "ws.okx.com",
+		MinVersion: tls.VersionTLS12, // Ensure at least TLS 1.2 is used
+	}
+	var header http.Header
+
+	dialUrl := string(c.url[p])
+
+	if c.TargetIP != "" {
+		parseWsUrl, err := url.Parse(dialUrl)
+		if err != nil {
+			return fmt.Errorf("error: %w", err)
+		}
+
+		// Separate hostname and port
+		hostname, _, err := net.SplitHostPort(parseWsUrl.Host)
+		if err != nil {
+			// If there's no port specified, use the hostname as is
+			hostname = parseWsUrl.Host
+		}
+		tlsConfig.ServerName = hostname
+		//set dailUrl
+		dialUrl = strings.Replace(dialUrl, hostname, c.TargetIP, 1)
+
+		// Set custom headers
+		header = http.Header{}
+		header.Set("Host", hostname)
+		header.Set("Origin", fmt.Sprintf("%s://%s", "wss", hostname))
+		//header.Set("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36")
+	} else {
+		header = nil
+	}
+
 	if c.WithIP != "" {
 		dialer = websocket.Dialer{
-			//NetDial: func(network, addr string) (net.Conn, error) {
-			//	localAddr, err := net.ResolveTCPAddr("tcp", c.WithIP+":0") // 替换为您的出口IP地址
-			//	if err != nil {
-			//		return nil, err
-			//	}
-			//	d := net.Dialer{
-			//		LocalAddr: localAddr,
-			//	}
-			//	return d.Dial(network, addr)
-			//},
-			NetDialContext: func(ctx context.Context, network, addr string) (net.Conn, error) {
-				localAddr, err := net.ResolveTCPAddr("tcp", c.WithIP+":0") // Replace with your outbound IP
+			NetDial: func(network, addr string) (net.Conn, error) {
+				localAddr, err := net.ResolveTCPAddr("tcp", c.WithIP+":0") // 替换为您的出口IP地址
 				if err != nil {
-					return nil, fmt.Errorf("failed to resolve local address: %w", err)
+					return nil, err
 				}
 				d := net.Dialer{
 					LocalAddr: localAddr,
 				}
-				return d.DialContext(ctx, network, addr)
+				return d.Dial(network, addr)
 			},
 			HandshakeTimeout:  45 * time.Second,
 			EnableCompression: false,
-			TLSClientConfig: &tls.Config{
-				CipherSuites: []uint16{ // 由于okx的demo服务器不支持默认TLS，设置TLS证书版本
-					tls.TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,
-					tls.TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,
-				},
-			},
+			TLSClientConfig:   tlsConfig,
 		}
 	} else {
 		dialer = websocket.Dialer{
 			Proxy:             http.ProxyFromEnvironment,
 			HandshakeTimeout:  45 * time.Second,
 			EnableCompression: false,
-			TLSClientConfig: &tls.Config{
-				CipherSuites: []uint16{ // 由于okx的demo服务器不支持默认TLS，设置TLS证书版本
-					tls.TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,
-					tls.TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,
-				},
-			},
+			TLSClientConfig:   tlsConfig,
 		}
 	}
-	conn, res, err := dialer.Dial(string(c.url[p]), nil)
+
+	conn, res, err := dialer.Dial(dialUrl, header)
 	if err != nil {
 		var statusCode int
 		if res != nil {
