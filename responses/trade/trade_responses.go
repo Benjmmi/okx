@@ -42,4 +42,8 @@ type (
 		responses.Basic
 		AlgoOrders []*trade.AlgoOrder `json:"data"`
 	}
+	AccountRateLimit struct {
+		responses.Basic
+		AccountRateLimits []*trade.AccountRateLimit `json:"data"`
+	}
 )

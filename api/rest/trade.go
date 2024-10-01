@@ -304,3 +304,18 @@ func (c *Trade) GetAlgoOrderList(req requests.AlgoOrderList, arch bool) (respons
 
 	return
 }
+
+// GetAccountRateLimit
+// Retrieve the rate limit of the account.
+
+func (c *Trade) GetAccountRateLimit() (response responses.AccountRateLimit, err error) {
+	p := "/api/v5/trade/account-rate-limit"
+	res, err := c.client.Do(http.MethodGet, p, true, nil)
+	if err != nil {
+		return
+	}
+	defer res.Body.Close()
+	d := json.NewDecoder(res.Body)
+	err = d.Decode(&response)
+	return
+}

@@ -148,4 +148,11 @@ type (
 		CTime           okx.JSONTime       `json:"cTime"`
 		TriggerTime     okx.JSONTime       `json:"triggerTime"`
 	}
+	AccountRateLimit struct {
+		AccRateLimit     string `json:"accRateLimit"`
+		FillRatio        string `json:"fillRatio"`
+		MainFillRatio    string `json:"mainFillRatio"`
+		NextAccRateLimit string `json:"nextAccRateLimit"`
+		Ts               string `json:"ts"`
+	}
 )
