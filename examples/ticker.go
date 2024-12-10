@@ -6,17 +6,20 @@ import (
 	"github.com/LIJI-Max/okx"
 	"github.com/LIJI-Max/okx/api"
 	"github.com/LIJI-Max/okx/events/public"
+	"github.com/LIJI-Max/okx/models/config"
 	wsRequestPublic "github.com/LIJI-Max/okx/requests/ws/public"
 	"log"
 )
 
 func main() {
+	cfg, _ := config.LoadConfig("./config/config_test.json")
 	// 监听okx行情信息
 	instID := "USDT-USDC"
 	okxSpotTickerChan := make(chan *public.Tickers)
 	ctx := context.Background()
 	dest := okx.DemoServer
-	client, err := api.NewClient(ctx, "42198db1-f9d2-4884-89f7-5f913924a41c", "5A5C4CA179FD4A32000C31C0EA751717", "wosiSMA1)", dest)
+	client, err := api.NewClient(ctx, cfg.OkxAPIKey, cfg.OkxSecretKey, cfg.OkxPassword, dest)
+
 	if err != nil {
 		log.Fatal(err)
 	}
