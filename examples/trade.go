@@ -4,10 +4,10 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"github.com/LIJI-Max/okx"
-	"github.com/LIJI-Max/okx/api"
-	"github.com/LIJI-Max/okx/api/rest"
-	"github.com/LIJI-Max/okx/models/config"
+	"github.com/Benjmmi/okx"
+	"github.com/Benjmmi/okx/api"
+	"github.com/Benjmmi/okx/api/rest"
+	"github.com/Benjmmi/okx/models/config"
 	"log"
 )
 

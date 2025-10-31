@@ -2,9 +2,9 @@ package rest
 
 import (
 	"encoding/json"
-	"github.com/LIJI-Max/okx"
-	requests "github.com/LIJI-Max/okx/requests/rest/tradedata"
-	responses "github.com/LIJI-Max/okx/responses/trade_data"
+	"github.com/Benjmmi/okx"
+	requests "github.com/Benjmmi/okx/requests/rest/tradedata"
+	responses "github.com/Benjmmi/okx/responses/trade_data"
 	"net/http"
 )
 

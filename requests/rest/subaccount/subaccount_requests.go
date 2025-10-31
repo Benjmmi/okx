@@ -1,6 +1,6 @@
 package subaccount
 
-import "github.com/LIJI-Max/okx"
+import "github.com/Benjmmi/okx"
 
 type (
 	ViewList struct {

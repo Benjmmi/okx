@@ -2,12 +2,12 @@ package rest
 
 import (
 	"encoding/json"
-	"github.com/LIJI-Max/okx"
+	"github.com/Benjmmi/okx"
 	"net/http"
 	"strings"
 
-	requests "github.com/LIJI-Max/okx/requests/rest/account"
-	responses "github.com/LIJI-Max/okx/responses/account"
+	requests "github.com/Benjmmi/okx/requests/rest/account"
+	responses "github.com/Benjmmi/okx/responses/account"
 )
 
 // Account

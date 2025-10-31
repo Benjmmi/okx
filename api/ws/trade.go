@@ -1,8 +1,8 @@
 package ws
 
 import (
-	"github.com/LIJI-Max/okx"
-	requests "github.com/LIJI-Max/okx/requests/rest/trade"
+	"github.com/Benjmmi/okx"
+	requests "github.com/Benjmmi/okx/requests/rest/trade"
 )
 
 // Trade

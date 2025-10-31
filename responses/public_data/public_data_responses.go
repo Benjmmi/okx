@@ -1,8 +1,8 @@
 package public_data
 
 import (
-	"github.com/LIJI-Max/okx/models/publicdata"
-	"github.com/LIJI-Max/okx/responses"
+	"github.com/Benjmmi/okx/models/publicdata"
+	"github.com/Benjmmi/okx/responses"
 )
 
 type (

@@ -1,6 +1,6 @@
 package public
 
-import "github.com/LIJI-Max/okx"
+import "github.com/Benjmmi/okx"
 
 type (
 	GetInstruments struct {

@@ -3,11 +3,11 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/LIJI-Max/okx"
-	"github.com/LIJI-Max/okx/api"
-	"github.com/LIJI-Max/okx/events/public"
-	"github.com/LIJI-Max/okx/models/config"
-	wsRequestPublic "github.com/LIJI-Max/okx/requests/ws/public"
+	"github.com/Benjmmi/okx"
+	"github.com/Benjmmi/okx/api"
+	"github.com/Benjmmi/okx/events/public"
+	"github.com/Benjmmi/okx/models/config"
+	wsRequestPublic "github.com/Benjmmi/okx/requests/ws/public"
 	"log"
 )
 

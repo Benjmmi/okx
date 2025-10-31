@@ -1,9 +1,9 @@
 package public
 
 import (
-	"github.com/LIJI-Max/okx/events"
-	"github.com/LIJI-Max/okx/models/market"
-	"github.com/LIJI-Max/okx/models/publicdata"
+	"github.com/Benjmmi/okx/events"
+	"github.com/Benjmmi/okx/models/market"
+	"github.com/Benjmmi/okx/models/publicdata"
 )
 
 type (

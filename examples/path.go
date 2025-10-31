@@ -3,11 +3,11 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/LIJI-Max/okx/models/config"
+	"github.com/Benjmmi/okx/models/config"
 	"log"
 
-	"github.com/LIJI-Max/okx"
-	"github.com/LIJI-Max/okx/api"
+	"github.com/Benjmmi/okx"
+	"github.com/Benjmmi/okx/api"
 )
 
 func main() {
