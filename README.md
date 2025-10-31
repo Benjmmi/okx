@@ -1,10 +1,10 @@
 okx
 ====
-[![Go Reference](https://pkg.go.dev/badge/github.com/aiviaio/okx.svg)](https://pkg.go.dev/github.com/aiviaio/okx)
-[![GitHub go.mod Go version of a Go module](https://img.shields.io/github/go-mod/go-version/aiviaio/okx.svg)](https://github.com/aiviaio/okx)
-[![GoReportCard example](https://goreportcard.com/badge/github.com/aiviaio/okx)](https://goreportcard.com/report/github.com/aiviaio/okx)
-[![GitHub license](https://img.shields.io/github/license/aiviaio/okx.svg)](https://github.com/aiviaio/okx/blob/main/LICENSE)
-[![GitHub release](https://img.shields.io/github/release/aiviaio/okx.svg)](https://GitHub.com/aiviaio/okx/releases/)
+[![Go Reference](https://pkg.go.dev/badge/github.com/Benjmmi/okx.svg)](https://pkg.go.dev/github.com/Benjmmi/okx)
+[![GitHub go.mod Go version of a Go module](https://img.shields.io/github/go-mod/go-version/Benjmmi/okx.svg)](https://github.com/Benjmmi/okx)
+[![GoReportCard example](https://goreportcard.com/badge/github.com/Benjmmi/okx)](https://goreportcard.com/report/github.com/Benjmmi/okx)
+[![GitHub license](https://img.shields.io/github/license/Benjmmi/okx.svg)](https://github.com/Benjmmi/okx/blob/main/LICENSE)
+[![GitHub release](https://img.shields.io/github/release/Benjmmi/okx.svg)](https://GitHub.com/Benjmmi/okx/releases/)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
 *NOTICE:*
@@ -19,7 +19,7 @@ Installation
 -----------------
 
 ```bash
-go get github.com/drinkthere/okx@v1.0.6
+go get github.com/Benjmmi/okx@v1.1.0
 ```
 
 Usage
@@ -30,12 +30,12 @@ package main
 
 import (
 	"context"
-	"github.com/aiviaio/okx"
-	"github.com/aiviaio/okx/api"
-	"github.com/aiviaio/okx/events"
-	"github.com/aiviaio/okx/events/private"
-	ws_private_requests "github.com/aiviaio/okx/requests/ws/private"
-	ws_public_requests "github.com/aiviaio/okx/requests/ws/public"
+	"github.com/Benjmmi/okx"
+	"github.com/Benjmmi/okx/api"
+	"github.com/Benjmmi/okx/events"
+	"github.com/Benjmmi/okx/events/private"
+	ws_private_requests "github.com/Benjmmi/okx/requests/ws/private"
+	ws_public_requests "github.com/Benjmmi/okx/requests/ws/public"
 	"log"
 )
 
@@ -157,4 +157,4 @@ Features
 * Fully automated authorization steps for both [REST](/api/rest) and [WS](/api/ws)
 * To receive websocket events you can choose [RawEventChan](/api/ws/client.go#L25)
   , [StructuredEventChan](/api/ws/client.go#L28), or provide your own
-  channels. [More info](https://github.com/aiviaio/okx/wiki/Handling-WS-events) 
+  channels. [More info](https://github.com/Benjmmi/okx/wiki/Handling-WS-events) 

@@ -4,16 +4,22 @@ import "github.com/LIJI-Max/okx"
 
 type (
 	Balance struct {
-		TotalEq     okx.JSONFloat64   `json:"totalEq"`
-		IsoEq       okx.JSONFloat64   `json:"isoEq"`
-		AdjEq       okx.JSONFloat64   `json:"adjEq,omitempty"`
-		OrdFroz     okx.JSONFloat64   `json:"ordFroz,omitempty"`
-		Imr         okx.JSONFloat64   `json:"imr,omitempty"`
-		Mmr         okx.JSONFloat64   `json:"mmr,omitempty"`
-		MgnRatio    okx.JSONFloat64   `json:"mgnRatio,omitempty"`
-		NotionalUsd okx.JSONFloat64   `json:"notionalUsd,omitempty"`
-		Details     []*BalanceDetails `json:"details,omitempty"`
-		UTime       okx.JSONTime      `json:"uTime"`
+		UTime                 okx.JSONTime      `json:"uTime"`
+		TotalEq               string            `json:"totalEq"`
+		IsoEq                 string            `json:"isoEq"`
+		AdjEq                 string            `json:"adjEq,omitempty"`
+		AvailEq               string            `json:"availEq"`
+		OrdFroz               string            `json:"ordFroz,omitempty"`
+		Imr                   string            `json:"imr,omitempty"`
+		Mmr                   string            `json:"mmr,omitempty"`
+		MgnRatio              string            `json:"mgnRatio,omitempty"`
+		NotionalUsd           string            `json:"notionalUsd,omitempty"`
+		NotionalUsdForBorrow  string            `json:"notionalUsdForBorrow,omitempty"`
+		NotionalUsdForSwap    string            `json:"notionalUsdForSwap,omitempty"`
+		NotionalUsdForFutures string            `json:"notionalUsdForFutures,omitempty"`
+		NotionalUsdForOption  string            `json:"notionalUsdForOption,omitempty"`
+		Upl                   string            `json:"upl,omitempty"`
+		Details               []*BalanceDetails `json:"details,omitempty"`
 	}
 	BalancesFunding struct {
 		Ccy       string          `json:"ccy"`
