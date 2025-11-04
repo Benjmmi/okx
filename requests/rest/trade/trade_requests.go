@@ -13,8 +13,11 @@ type (
 		ReduceOnly      bool             `json:"reduceOnly,omitempty"`
 		Sz              float64          `json:"sz,string"`
 		Px              float64          `json:"px,omitempty,string"`
+		PxUsd           string           `json:"pxUsd,omitempty"`
+		PxVol           string           `json:"pxVol,omitempty"`
 		TdMode          okx.TradeMode    `json:"tdMode"`
 		Side            okx.OrderSide    `json:"side"`
+		BanAmend        bool             `json:"banAmend,omitempty"`
 		PosSide         okx.PositionSide `json:"posSide,omitempty"`
 		OrdType         okx.OrderType    `json:"ordType"`
 		TgtCcy          okx.QuantityType `json:"tgtCcy,omitempty"`
@@ -24,6 +27,18 @@ type (
 		SlTriggerPx     float64          `json:"slTriggerPx,string,omitempty"`
 		SlOrdPx         float64          `json:"slOrdPx,string,omitempty"`
 		SlTriggerPxType string           `json:"slTriggerPxType,omitempty"`
+		AttachAlgoOrds  struct {
+			AttachAlgoClOrdId    string `json:"attachAlgoClOrdId,omitempty"`
+			TpTriggerPx          string `json:"tpTriggerPx,omitempty"`
+			TpOrdPx              string `json:"tpOrdPx,omitempty"`
+			TpOrdKind            string `json:"tpOrdKind,omitempty"`
+			SlTriggerPx          string `json:"slTriggerPx,omitempty"`
+			SlOrdPx              string `json:"slOrdPx,omitempty"`
+			TpTriggerPxType      string `json:"tpTriggerPxType,omitempty"`
+			SlTriggerPxType      string `json:"slTriggerPxType,omitempty"`
+			Sz                   string `json:"sz,omitempty"`
+			AmendPxOnTriggerType string `json:"amendPxOnTriggerType,omitempty"`
+		} `json:"attachAlgoOrds,omitempty"`
 	}
 	CancelOrder struct {
 		ID      string `json:"-"`
