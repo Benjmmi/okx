@@ -27,18 +27,19 @@ type (
 		SlTriggerPx     float64          `json:"slTriggerPx,string,omitempty"`
 		SlOrdPx         float64          `json:"slOrdPx,string,omitempty"`
 		SlTriggerPxType string           `json:"slTriggerPxType,omitempty"`
-		AttachAlgoOrds  struct {
-			AttachAlgoClOrdId    string `json:"attachAlgoClOrdId,omitempty"`
-			TpTriggerPx          string `json:"tpTriggerPx,omitempty"`
-			TpOrdPx              string `json:"tpOrdPx,omitempty"`
-			TpOrdKind            string `json:"tpOrdKind,omitempty"`
-			SlTriggerPx          string `json:"slTriggerPx,omitempty"`
-			SlOrdPx              string `json:"slOrdPx,omitempty"`
-			TpTriggerPxType      string `json:"tpTriggerPxType,omitempty"`
-			SlTriggerPxType      string `json:"slTriggerPxType,omitempty"`
-			Sz                   string `json:"sz,omitempty"`
-			AmendPxOnTriggerType string `json:"amendPxOnTriggerType,omitempty"`
-		} `json:"attachAlgoOrds,omitempty"`
+		AttachAlgoOrds  []AttachAlgoOrd  `json:"attachAlgoOrds,omitempty"`
+	}
+	AttachAlgoOrd struct {
+		AttachAlgoClOrdId    string `json:"attachAlgoClOrdId,omitempty"`
+		TpTriggerPx          string `json:"tpTriggerPx,omitempty"`
+		TpOrdPx              string `json:"tpOrdPx,omitempty"`
+		TpOrdKind            string `json:"tpOrdKind,omitempty"`
+		SlTriggerPx          string `json:"slTriggerPx,omitempty"`
+		SlOrdPx              string `json:"slOrdPx,omitempty"`
+		TpTriggerPxType      string `json:"tpTriggerPxType,omitempty"`
+		SlTriggerPxType      string `json:"slTriggerPxType,omitempty"`
+		Sz                   string `json:"sz,omitempty"`
+		AmendPxOnTriggerType string `json:"amendPxOnTriggerType,omitempty"`
 	}
 	CancelOrder struct {
 		ID      string `json:"-"`
